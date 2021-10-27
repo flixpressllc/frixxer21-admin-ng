@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
 import { PopupService } from './frixxer-widgets/popups/popup.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { RequiresSignedInDirective } from './directives/requires-signed-in.directive';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: environment.clientId,
@@ -35,7 +36,8 @@ const gapiClientConfig: NgGapiClientConfig = {
     BlockDefsComponent,
     CreateBlockDefComponent,
     UpdateBlockDefComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    RequiresSignedInDirective
   ],
   imports: [
     BrowserModule,
