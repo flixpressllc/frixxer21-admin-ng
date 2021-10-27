@@ -1,0 +1,53 @@
+<div class='data-entry' [formGroup]='rectAreaDef'>
+  <div>
+    <label>Id</label>
+    <div>
+      <input type='text' formControlName='id' />
+      <div class='errors' *ngIf='rectAreaDef.controls.name.invalid && (rectAreaDef.controls.name.dirty || rectAreaDef.controls.name.touched)'>
+        <div *ngIf='rectAreaDef.controls.name.errors?.required'>
+          Id is required
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <label>Rendering Component Type</label>
+    <div>
+      <select formControlName='renderingComponentType'>
+        <option value='multi'>Multi</option>
+        <option value='video-player'>Video Player</option>
+        <option value='ticker'>Ticker</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <label>X</label>
+    <div>
+      <input type='number' formControlName='x' />
+    </div>
+  </div>
+  <div>
+    <label>Y</label>
+    <div>
+      <input type='number' formControlName='y' />
+    </div>
+  </div>
+  <div>
+    <label>Z</label>
+    <div>
+      <input type='number' formControlName='z' />
+    </div>
+  </div>
+  <div>
+    <label>Width</label>
+    <div>
+      <input type='number' formControlName='width' />
+    </div>
+  </div>
+  <div>
+    <label>Height</label>
+    <div>
+      <input type='number' formControlName='height' />
+    </div>
+  </div>
+</div>

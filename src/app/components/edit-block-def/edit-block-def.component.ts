@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BlockDef } from 'src/app/models/datamodels';
 import { EditBackgroundComponent } from '../edit-background/edit-background.component';
+import { EditRectAreaDefsComponent } from '../edit-rect-area-defs/edit-rect-area-defs.component';
 import { EditTransitionComponent } from '../edit-transition/edit-transition.component';
 
 @Component({
@@ -17,7 +18,8 @@ export class EditBlockDefComponent implements OnInit {
     return new FormGroup({
       durationInMinutes: new FormControl(blockDef.durationInMinutes),
       background: EditBackgroundComponent.ConvertToFormGroup(blockDef.background),
-      transition: EditTransitionComponent.ConvertToFormGroup(blockDef.transition)
+      transition: EditTransitionComponent.ConvertToFormGroup(blockDef.transition),
+      rectAreaDefs: EditRectAreaDefsComponent.ConvertToFormArray(blockDef.rectAreaDefs)
     });
   }
 

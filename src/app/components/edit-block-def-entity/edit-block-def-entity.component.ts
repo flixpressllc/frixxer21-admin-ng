@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TabItem } from '../../frixxer-widgets/tabbing/tabitem';
 import { BlockDefEntity } from '../../models/datamodels';
 import { EditBackgroundComponent } from '../edit-background/edit-background.component';
@@ -30,7 +30,7 @@ export class EditBlockDefEntityComponent implements OnInit {
       { id: 'basics', name: 'Basics', customTabData: {}},
       { id: 'background', name: 'Background', customTabData: {}},
       { id: 'transition', name: 'Transition', customTabData: {}},
-      { id: 'blockdef', name: 'Block Definition', customTabData: {}},
+      { id: 'rectareas', name: 'Rect Areas', customTabData: {}},
     ];
   }
 
@@ -44,6 +44,10 @@ export class EditBlockDefEntityComponent implements OnInit {
 
   get durationInMinutesFormControl(): FormControl {
     return (this.blockDefEntity.controls.blockDef as FormGroup).controls.durationInMinutes as FormControl;
+  }
+
+  get rectAreaDefsFormArray(): FormArray {
+    return (this.blockDefEntity.controls.blockDef as FormGroup).controls.rectAreaDefs as FormArray;
   }
 
 }

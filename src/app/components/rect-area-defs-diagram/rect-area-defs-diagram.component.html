@@ -1,0 +1,6 @@
+<div class='rect-area-defs' #rectAreaDefsContainer>
+  <div #rectAreaDivs *ngFor='let rectAreaDef of rectAreaDefs' [class.selected]='rectAreaDef === selectedRectAreaDef'
+    (click)='selectRectAreaDef(rectAreaDef)' >
+    <span>{{ rectAreaDef.id }}</span>
+  </div>
+</div>

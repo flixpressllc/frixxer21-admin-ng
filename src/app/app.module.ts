@@ -23,6 +23,9 @@ import { EditBlockDefEntityComponent } from './components/edit-block-def-entity/
 import { EditBlockDefComponent } from './components/edit-block-def/edit-block-def.component';
 import { EditBackgroundComponent } from './components/edit-background/edit-background.component';
 import { EditTransitionComponent } from './components/edit-transition/edit-transition.component';
+import { EditRectAreaDefComponent } from './components/edit-rect-area-def/edit-rect-area-def.component';
+import { EditRectAreaDefsComponent } from './components/edit-rect-area-defs/edit-rect-area-defs.component';
+import { RectAreaDefsDiagramComponent } from './components/rect-area-defs-diagram/rect-area-defs-diagram.component';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: environment.clientId,
@@ -46,6 +49,9 @@ const gapiClientConfig: NgGapiClientConfig = {
     EditBlockDefComponent,
     EditBackgroundComponent,
     EditTransitionComponent,
+    EditRectAreaDefComponent,
+    EditRectAreaDefsComponent,
+    RectAreaDefsDiagramComponent,
   ],
   imports: [
     BrowserModule,

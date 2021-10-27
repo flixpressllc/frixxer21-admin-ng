@@ -1,0 +1,28 @@
+@import '../../scss/variables';
+@import '../../scss/utils/tintshade';
+
+.rect-area-defs {
+  position: relative;
+  width: 100%;
+
+  & > div {
+    position: absolute;
+    border: solid 1px tint($main-color, 80%);
+    box-sizing: border-box;
+    // padding: $general-spacing;
+    background-color: tint($main-color, 90%);
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    &.selected {
+      background-color: tint($main-color, 60%);
+      border: solid 1px tint($main-color, 40%);
+    }
+
+
+  }
+}
