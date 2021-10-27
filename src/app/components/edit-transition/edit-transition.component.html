@@ -1,0 +1,38 @@
+<div class='data-entry' [formGroup]='transition'>
+  <div>
+    <label>Type</label>
+    <div>
+      <select formControlName='type'>
+        <option value='image'>Image</option>
+        <option value='video'>Video</option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <label>Image Url</label>
+    <div>
+      <input type='text' formControlName='imageUrl' />
+    </div>
+  </div>
+  <div>
+    <label>Video Url</label>
+    <div>
+      <input type='text' formControlName='videoUrl' />
+    </div>
+  </div>
+  <div>
+    <label>Swap Time In Ms</label>
+    <div>
+      <input type='number' formControlName='swapTimeInMs' />
+    </div>
+  </div>
+  <div>
+    <label>Duration in Ms</label>
+    <div>
+      <input type='number' formControlName='durationInMs' />
+    </div>
+  </div>
+</div>
+<pre>
+  {{ transition.value | json }}
+</pre>

@@ -1,1 +1,6 @@
-<p>update-block-def works!</p>
+<h1>Update Block Def</h1>
+
+<ng-container *ngIf='blockDefEntityFormGroup != null'>  
+  <app-edit-block-def-entity [blockDefEntity]='blockDefEntityFormGroup'>
+  </app-edit-block-def-entity>
+</ng-container>

@@ -1,0 +1,17 @@
+<div class='data-entry' [formGroup]='background'>
+  <div>
+    <label>Type</label>
+    <div>
+      <select formControlName='type'>
+        <option value='image'>Image</option>
+        <option value='video'>Video</option>
+      </select>
+    </div>    
+  </div>
+  <div>
+    <label>Url</label>
+    <div>
+      <input type='text' formControlName='url' />
+    </div>
+  </div>
+</div>

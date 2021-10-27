@@ -1,0 +1,23 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 1em;
+  background-color: #c66300;  
+  color: white;
+  font-weight: bold;
+
+  &.is-selected {
+    background-color: #eeeeee;
+    color: black;
+  }
+}
+
+.tab-content {
+  padding: 1em;
+  background-color: #eeeeee;
+}

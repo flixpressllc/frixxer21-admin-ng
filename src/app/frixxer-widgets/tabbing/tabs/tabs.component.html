@@ -1,0 +1,13 @@
+<div class="tabs-container">
+  <div class='tabs'>
+    <div class="tab" *ngFor="let tabItem of tabItems" [class.is-selected]='tabItem === selectedTabItem'>
+      <span (click)="selectTab(tabItem)"> {{ tabItem.name }}</span>
+    </div>
+  </div>
+  
+  <div class="tab-content">
+    <ng-container *ngIf="selectedTabPaneTemplate != null">
+      <ng-container *ngTemplateOutlet="selectedTabPaneTemplate"></ng-container>
+    </ng-container>
+  </div>
+</div>

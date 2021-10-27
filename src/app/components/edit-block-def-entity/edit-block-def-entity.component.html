@@ -1,0 +1,43 @@
+<form [formGroup]='blockDefEntity'>
+  <app-tabs [tabItems]='tabItems'>
+    <app-tab-pane id='basics'>
+      <div class='data-entry'>
+        <div>
+          <label>Id</label>
+          <div>
+            {{ blockDefEntity.value.id }}
+          </div>
+        </div>
+        <div>
+          <label>Name</label>
+          <div>
+            <input type='text' formControlName='name' />
+          </div>
+        </div>
+        <div>
+          <label>Duration In Minutes</label>
+          <div>
+            <select [formControl]='durationInMinutesFormControl'>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+            </select>
+          </div>
+        </div>       
+      </div>
+    </app-tab-pane>
+    <app-tab-pane id='background'>
+      <app-edit-background [background]='backgroundFormGroup'>
+      </app-edit-background>
+    </app-tab-pane>
+    <app-tab-pane id='transition'>
+      <app-edit-transition [transition]='transitionFormGroup'>
+      </app-edit-transition>
+    </app-tab-pane>
+    <app-tab-pane id='blockdef'>
+      BlockDef
+    </app-tab-pane>
+  </app-tabs>
+</form>

@@ -19,6 +19,10 @@ import { AuthService } from './services/auth.service';
 import { PopupService } from './frixxer-widgets/popups/popup.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RequiresSignedInDirective } from './directives/requires-signed-in.directive';
+import { EditBlockDefEntityComponent } from './components/edit-block-def-entity/edit-block-def-entity.component';
+import { EditBlockDefComponent } from './components/edit-block-def/edit-block-def.component';
+import { EditBackgroundComponent } from './components/edit-background/edit-background.component';
+import { EditTransitionComponent } from './components/edit-transition/edit-transition.component';
 
 const gapiClientConfig: NgGapiClientConfig = {
   client_id: environment.clientId,
@@ -37,7 +41,11 @@ const gapiClientConfig: NgGapiClientConfig = {
     CreateBlockDefComponent,
     UpdateBlockDefComponent,
     ToolbarComponent,
-    RequiresSignedInDirective
+    RequiresSignedInDirective,
+    EditBlockDefEntityComponent,
+    EditBlockDefComponent,
+    EditBackgroundComponent,
+    EditTransitionComponent,
   ],
   imports: [
     BrowserModule,
