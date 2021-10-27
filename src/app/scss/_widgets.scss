@@ -1,0 +1,89 @@
+@import '../scss/variables';
+@import '../scss/utils/tintshade';
+
+.dialog-ng-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1000px;
+
+  & > div:first-child {
+    box-sizing: border-box;
+    // padding: 20px;
+  }
+
+  & > div.actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    margin: -10px;
+    gap: 4px;
+
+    @media screen and (max-width: $break-small) {
+      margin: 0;
+    }
+  }
+}
+
+.selection-dialog {
+  padding: $general-spacing;
+  min-width: 30vw;
+  display: flex;
+  flex-direction: column;
+  gap: $general-spacing;
+
+  .selection-list {
+    & > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: $general-spacing;
+  
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.editing-dialog {
+  padding: $general-spacing;
+}
+
+.roster-table {
+  border-collapse: collapse;
+  thead {
+    background-color: tint($main-color, 50%);
+    font-weight: bold;
+    color: white;
+  }
+  td {
+    padding: $general-spacing;
+    
+    &.actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      gap: $general-spacing;
+
+      svg {
+        color: $main-color;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.vertical-stack {
+  display: flex;
+  flex-direction: column;
+  gap: #{ 1.5 * $general-spacing };
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: $general-spacing;
+}

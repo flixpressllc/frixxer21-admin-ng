@@ -1,0 +1,23 @@
+<div *ngIf="!options.isModal" class="popup-absolute" [ngStyle]="absoluteCoordinates" #popupElement>
+  <ng-template appPopupClientInsertion></ng-template>
+</div>
+
+<div *ngIf="options.isModal" class="dialog-overlay">
+  <div class="dialog">
+    <ng-container *ngTemplateOutlet="this.options.headingTemplate || defaultHeadingTemplate; context: createHeadingTemplateContext()">
+    </ng-container>
+    <div>
+      <ng-template appPopupClientInsertion></ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultHeadingTemplate>
+  <div class='default-heading'>
+    <h3 class="heading" *ngIf="options.heading != null">{{ options.heading }}</h3>
+    <span>      
+      <fa-icon [icon]='faTimes' (click)='requestClose()' size='2x'></fa-icon>
+    </span>
+  </div>
+  
+</ng-template>

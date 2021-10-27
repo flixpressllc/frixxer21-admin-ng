@@ -1,0 +1,30 @@
+@import '../../scss/variables';
+
+%toolbar {
+  display: flex;
+  flex-direction: row;
+  background-color: $main-color;
+  color: white;  
+  justify-content: space-between;
+  align-items: center;
+  
+  & > div {
+    display: flex;
+    flex-direction: row;    
+    gap: #{ 0.5 * $general-spacing};
+
+    & > * {
+      padding: $general-spacing;
+    }
+  }
+}
+
+.signed-in-toolbar {
+  @extend %toolbar;
+
+  
+}
+
+.signed-out-toolbar {
+  @extend %toolbar;  
+}

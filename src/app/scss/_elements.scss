@@ -1,0 +1,76 @@
+@import './variables';
+@import './utils/tintshade';
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  color: $main-color;
+
+  &.on-background {
+    color: white;
+  }
+}
+
+span.as-link {
+  text-decoration: underline;
+  color: $main-color;
+  cursor: pointer;
+
+  &.on-background {
+    color: white;
+  }
+}
+
+button {
+  padding: $general-spacing;
+  border-radius: 0.3em;
+  background-color: $command-color;
+  color: black;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: shade($command-color, 10%)
+  }
+
+  &.disabled {
+    background-color: mix($command-color, #cccccc, 50%);
+    cursor: default;
+  }
+
+  &.primary {
+    background-color: $main-color;
+    color: white;
+
+    &:hover {
+      background-color: shade($main-color, 10%);
+    }
+
+    &.disabled {
+      background-color: mix($main-color, #cccccc, 50%);
+      cursor: default;
+    }
+  }
+}
+
+
+input, textarea, select {
+  
+  padding: $general-spacing;
+  background-color: $field-color;
+  border: 1px transparent inset;
+  color: black;
+  border-radius: 0.3em;
+
+  &:focus {
+    background-color: lighten($main-color, 50%);
+  }
+
+  &.error {
+    background-color: lighten($danger-color, 50%);
+  }
+}

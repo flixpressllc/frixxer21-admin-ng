@@ -1,0 +1,23 @@
+@import './variables';
+
+.data-entry {
+  & > div {
+    margin-bottom: #{$general-spacing * 2};
+
+    label {
+      display: block;
+      margin-bottom: #{$general-spacing / 2};
+    }
+  }
+
+  .actions {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .errors {
+    color: $danger-color;
+  }
+}

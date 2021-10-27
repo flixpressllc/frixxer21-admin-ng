@@ -1,0 +1,19 @@
+<div *appRequiresSignedIn='true; else notSignedIn' class='signed-in-toolbar'>
+  <div>
+    <a class='on-background' routerLink='/dashboard'><fa-icon [icon]='faThList' size='2x'></fa-icon></a>
+  </div>
+  <div>
+    <span class='as-link on-background' (click)='signOut()' ><fa-icon [icon]='faSignOut' size='2x'></fa-icon></span>
+  </div>
+</div>
+<ng-template #notSignedIn>
+  <div class='signed-out-toolbar'>
+    <div>
+      <span>Frixxer</span>
+    </div>
+    <div>
+      <span class='as-link on-background' (click)='signIn()' ><fa-icon [icon]='faSignIn' size='2x'></fa-icon></span>
+    </div>
+
+  </div>
+</ng-template>

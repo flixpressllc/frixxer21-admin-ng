@@ -1,0 +1,29 @@
+.paginator {	
+  display: flex;
+  flex-direction: row;
+	padding: 0;
+
+	& > * {
+		margin-right: 3px;
+		box-sizing: border-box;
+		background-color: #c66300;
+		padding: 10px;
+		cursor: pointer;
+		color: white;
+
+		&.is-current{
+			background-color: #ffa245;
+			color: white;
+		}
+
+		&.disabled{
+			background-color: #cccccc;
+		}
+
+		&.page-info {
+			background-color: white;
+			color: black;
+		}
+	}
+}
+
