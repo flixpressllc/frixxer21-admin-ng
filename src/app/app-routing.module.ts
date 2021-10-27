@@ -10,7 +10,7 @@ import { UpdateBlockDefComponent } from './pages/update-block-def/update-block-d
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'blocksdef', component: BlockDefsComponent, canActivate: [AuthGuard] },
+  { path: 'blockdefs', component: BlockDefsComponent, canActivate: [AuthGuard] },
   { path: 'blockdef/new', component: CreateBlockDefComponent, canActivate: [AuthGuard] },
   { path: 'blockdef/:id', component: UpdateBlockDefComponent, canActivate: [AuthGuard] },
 ];
