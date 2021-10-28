@@ -60,4 +60,15 @@ export class FrixxerService {
       this.httpClient, this.authService.getToken(), this.BLOCK_DEFINITIONS_SHEET_ID, 'Sheet1',
       blockDefEntityForSheets, blockDefEntity.rowNumber, 'A', 'C');
   }
+
+  postBlockDefEntity(blockDefEntity: BlockDefEntity): Promise<SaveResponse> {
+    const blockEntityForSheets = {
+      id: blockDefEntity.id,
+      name: blockDefEntity.name,
+      blockDef: JSON.stringify(blockDefEntity.blockDef),
+    };
+    return GoogleSheetUtils.append(
+      this.httpClient, this.authService.getToken(), this.BLOCK_DEFINITIONS_SHEET_ID, 'Sheet1',
+      blockEntityForSheets, 'A', 'C');
+  }
 }

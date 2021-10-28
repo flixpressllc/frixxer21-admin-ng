@@ -16,7 +16,7 @@ export class EditTransitionComponent implements OnInit {
       type: new FormControl(transition.type),
       imageUrl: new FormControl(transition.imageUrl),
       videoUrl: new FormControl(transition.videoUrl),
-      swapTimeInMs: new FormControl(transition.swapAtTimeInMs),
+      swapAtTimeInMs: new FormControl(transition.swapAtTimeInMs),
       durationInMs: new FormControl(transition.durationInMs)
     });
   }

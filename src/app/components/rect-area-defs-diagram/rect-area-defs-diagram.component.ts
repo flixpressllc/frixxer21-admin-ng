@@ -29,7 +29,6 @@ export class RectAreaDefsDiagramComponent implements OnInit, AfterViewChecked {
     if (width === 0) {
       width = 500;
     }
-    console.log(`Rectarea defs container width: ${width}`);
     this.scaleFactor = 1600 / width;
     const height = 9 / 16 * width;
     this.renderer.setStyle(this.rectAreaDefsContainer.nativeElement, 'height', `${height}px`);

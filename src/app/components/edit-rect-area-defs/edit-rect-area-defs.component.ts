@@ -29,7 +29,6 @@ export class EditRectAreaDefsComponent implements OnInit {
   }
 
   onRectAreaDefSelected(rectAreaDef: RectAreaDef): void {
-    console.log(`Rect Area Def: ${JSON.stringify(rectAreaDef)}`);
     this.selectedRectAreaDef = this.rectAreaDefs.controls.find(control =>
       (control as FormGroup).value.id === rectAreaDef.id
       ) as FormGroup;

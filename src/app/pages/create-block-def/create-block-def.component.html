@@ -1,1 +1,7 @@
-<p>create-block-def works!</p>
+<div class='vertical-stack'>
+  <h1>Create Block Definition</h1>
+  <div *ngIf='blockDefEntityFormGroup != null'>
+    <app-edit-block-def-entity [blockDefEntity]='blockDefEntityFormGroup'
+      (saveRequest)='onSaveRequest($event)'></app-edit-block-def-entity>
+  </div>
+</div>
