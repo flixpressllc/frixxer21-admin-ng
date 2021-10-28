@@ -1,0 +1,11 @@
+@import '../../scss/variables';
+
+.edit-block-def-entity-ui {
+  display: flex;
+  flex-direction: row;
+  gap: $general-spacing;
+
+  & > * {
+    flex: 1 0 10px;
+  }
+}

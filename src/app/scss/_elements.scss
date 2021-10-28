@@ -55,6 +55,20 @@ button {
       cursor: default;
     }
   }
+
+  &.danger {
+    background-color: $danger-color;
+    color: white;
+
+    &:hover {
+      background-color: shade($danger-color, 10%);
+    }
+
+    &.disabled {
+      background-color: mix($danger-color, #cccccc, 50%);
+      cursor: default;
+    }
+  }
 }
 
 

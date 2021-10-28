@@ -3,8 +3,8 @@
     <label>Id</label>
     <div>
       <input type='text' formControlName='id' />
-      <div class='errors' *ngIf='rectAreaDef.controls.name.invalid && (rectAreaDef.controls.name.dirty || rectAreaDef.controls.name.touched)'>
-        <div *ngIf='rectAreaDef.controls.name.errors?.required'>
+      <div class='errors' *ngIf='rectAreaDef.controls.id.invalid && (rectAreaDef.controls.id.dirty || rectAreaDef.controls.id.touched)'>
+        <div *ngIf='rectAreaDef.controls.id.errors?.required'>
           Id is required
         </div>
       </div>
@@ -48,6 +48,12 @@
     <label>Height</label>
     <div>
       <input type='number' formControlName='height' />
+    </div>
+  </div>
+  <div>
+    <label></label>
+    <div>
+      <button type='button' class='danger' (click)='requestDeleteRectArea()'>Delete Rect Area</button>
     </div>
   </div>
 </div>

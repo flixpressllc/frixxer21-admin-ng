@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GoogleSheetUtils } from '../utils/googlesheetutils';
 import { AuthService } from './auth.service';
-import { ResultSet, ListItem } from '../models/generalmodels';
+import { ResultSet, ListItem, SaveResponse } from '../models/generalmodels';
 import { BlockDef, BlockDefEntity } from '../models/datamodels';
 
 @Injectable({
@@ -32,7 +32,7 @@ export class FrixxerService {
   }
 
   getBlockDefEntity(id: string): Promise<BlockDefEntity> {
-    const projectionClause = 'A, B, C';
+    const projectionClause = 'A, B, C, D';
     const whereClause = `A='${id}'`;
 
     return GoogleSheetUtils.get(
@@ -42,9 +42,22 @@ export class FrixxerService {
         const blockDefEntity: BlockDefEntity = {
           id: item.c[0].v,
           name: item.c[1].v,
-          blockDef: JSON.parse(item.c[2].v) as BlockDef
+          blockDef: JSON.parse(item.c[2].v) as BlockDef,
+          rowNumber: item.c[3].v
         };
         return blockDefEntity;
       });
+  }
+
+  putBlockDefEntity(id: string, blockDefEntity: BlockDefEntity): Promise<SaveResponse> {
+    const blockDefEntityForSheets = {
+      id: blockDefEntity.id,
+      name: blockDefEntity.name,
+      blockDef: JSON.stringify(blockDefEntity.blockDef),
+    };
+
+    return GoogleSheetUtils.update(
+      this.httpClient, this.authService.getToken(), this.BLOCK_DEFINITIONS_SHEET_ID, 'Sheet1',
+      blockDefEntityForSheets, blockDefEntity.rowNumber, 'A', 'C');
   }
 }

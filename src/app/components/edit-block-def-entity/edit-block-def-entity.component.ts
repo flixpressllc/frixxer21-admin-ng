@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { TabItem } from '../../frixxer-widgets/tabbing/tabitem';
-import { BlockDefEntity } from '../../models/datamodels';
-import { EditBackgroundComponent } from '../edit-background/edit-background.component';
+import { BlockDef, BlockDefEntity } from '../../models/datamodels';
 import { EditBlockDefComponent } from '../edit-block-def/edit-block-def.component';
+import { easyDeepClone } from '../../utils/objecttools';
 
 @Component({
   selector: 'app-edit-block-def-entity',
@@ -13,13 +13,15 @@ import { EditBlockDefComponent } from '../edit-block-def/edit-block-def.componen
 export class EditBlockDefEntityComponent implements OnInit {
 
   @Input() blockDefEntity: FormGroup;
+  @Output() saveRequest: EventEmitter<BlockDefEntity> = new EventEmitter<BlockDefEntity>();
   tabItems: TabItem[];
 
   public static ConvertToFormGroup(blockDefEntity: BlockDefEntity): FormGroup {
     return new FormGroup({
       id: new FormControl(blockDefEntity.id),
       name: new FormControl(blockDefEntity.name),
-      blockDef: EditBlockDefComponent.ConvertToFormGroup(blockDefEntity.blockDef)
+      blockDef: EditBlockDefComponent.ConvertToFormGroup(blockDefEntity.blockDef),
+      rowNumber: new FormControl(blockDefEntity.rowNumber)
     });
   }
 
@@ -48,6 +50,11 @@ export class EditBlockDefEntityComponent implements OnInit {
 
   get rectAreaDefsFormArray(): FormArray {
     return (this.blockDefEntity.controls.blockDef as FormGroup).controls.rectAreaDefs as FormArray;
+  }
+
+  save(): void {
+    const blockDefEntityToSave = easyDeepClone<BlockDefEntity>(this.blockDefEntity.value);
+    this.saveRequest.emit(blockDefEntityToSave);
   }
 
 }

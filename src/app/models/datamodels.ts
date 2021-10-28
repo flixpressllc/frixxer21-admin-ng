@@ -35,5 +35,6 @@ export interface BlockDef {
 export interface BlockDefEntity extends Entity {
   name: string;
   blockDef: BlockDef;
+  rowNumber: number;
 }
 

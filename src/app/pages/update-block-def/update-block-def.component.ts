@@ -34,7 +34,13 @@ export class UpdateBlockDefComponent implements OnInit {
     });
   }
 
-  onSaveRequest(blockDefEntity: BlockDefEntity): void {
+  async onSaveRequest(blockDefEntity: BlockDefEntity): Promise<void> {
+    try {
+      const saveResponse = await this.frixxerService.putBlockDefEntity(blockDefEntity.id, blockDefEntity);
+      this.router.navigate(['blockdefs']);
+    } catch {
+      // ?
+    }
   }
 
 }

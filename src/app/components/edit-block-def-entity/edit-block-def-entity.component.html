@@ -1,4 +1,4 @@
-<form [formGroup]='blockDefEntity'>
+<form [formGroup]='blockDefEntity' class='vertical-stack'>
   <app-tabs [tabItems]='tabItems'>
     <app-tab-pane id='basics'>
       <div class='data-entry'>
@@ -41,6 +41,9 @@
       </app-edit-rect-area-defs>
     </app-tab-pane>
   </app-tabs>
-  
+  <div class='actions'>
+    <button type='button' class='primary' [disabled]='blockDefEntity.invalid' [class.disabled]='blockDefEntity.invalid'
+      (click)='save()'>Save</button>
+  </div>
   
 </form>

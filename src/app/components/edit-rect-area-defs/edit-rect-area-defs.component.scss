@@ -1,0 +1,12 @@
+@import '../../scss/variables';
+
+.edit-rect-areas-ui {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  gap: #{ 3 * $general-spacing };
+  
+  & > * {
+    flex: 1 0 10px;
+  }
+}

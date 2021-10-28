@@ -16,7 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 
     &.selected {
       background-color: tint($main-color, 60%);

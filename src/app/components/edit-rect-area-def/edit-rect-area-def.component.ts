@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { RectAreaDef } from 'src/app/models/datamodels';
+import { RectAreaDef } from '../../models/datamodels';
 
 @Component({
   selector: 'app-edit-rect-area-def',
@@ -10,6 +10,7 @@ import { RectAreaDef } from 'src/app/models/datamodels';
 export class EditRectAreaDefComponent implements OnInit {
 
   @Input() rectAreaDef: FormGroup;
+  @Output() deleteRequest: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   public static ConvertToFormGroup(rectAreaDef: RectAreaDef): FormGroup {
     return new FormGroup({
@@ -26,6 +27,10 @@ export class EditRectAreaDefComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  requestDeleteRectArea(): void {
+    this.deleteRequest.emit(this.rectAreaDef);
   }
 
 }
