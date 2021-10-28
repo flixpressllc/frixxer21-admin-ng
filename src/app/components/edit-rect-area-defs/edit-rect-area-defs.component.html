@@ -1,13 +1,13 @@
 <div class='edit-rect-areas-ui'>  
   <div class='vertical-stack'>
     <button class='primary' (click)='addRectArea()'>Add Rect Area</button>
-    <app-rect-area-defs-diagram  #rectAreaDefsDiagram [rectAreaDefs]='rectAreaDefs.value'
-      (rectAreaDefSelected)='onRectAreaDefSelected($event)'>
+    <app-rect-area-defs-diagram  #rectAreaDefsDiagram [rectAreaDefs]='rectAreaDefs'
+      (rectAreaDefSelected)='onRectAreaDefSelected($event)'
+      (deleteRequest)='onDeleteRequest($event)'>
     </app-rect-area-defs-diagram>
   </div>  
   <div class='vertical-stack'>
     <app-edit-rect-area-def *ngIf='selectedRectAreaDef != null' 
-      [rectAreaDef]='selectedRectAreaDef'
-      (deleteRequest)='onDeleteRequest($event)'></app-edit-rect-area-def>
+      [rectAreaDef]='selectedRectAreaDef'></app-edit-rect-area-def>
   </div>
 </div>

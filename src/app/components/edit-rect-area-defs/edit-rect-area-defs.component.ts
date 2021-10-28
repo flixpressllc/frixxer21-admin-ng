@@ -31,10 +31,8 @@ export class EditRectAreaDefsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onRectAreaDefSelected(rectAreaDef: RectAreaDef): void {
-    this.selectedRectAreaDef = this.rectAreaDefs.controls.find(control =>
-      (control as FormGroup).value.id === rectAreaDef.id
-      ) as FormGroup;
+  onRectAreaDefSelected(rectAreaDef: FormGroup): void {
+    this.selectedRectAreaDef = rectAreaDef;
   }
 
   addRectArea(): void {
@@ -46,15 +44,19 @@ export class EditRectAreaDefsComponent implements OnInit {
       x: 0,
       y: 0,
     };
-    this.rectAreaDefs.push(EditRectAreaDefComponent.ConvertToFormGroup(newRectAreaDef));
-    this.rectAreaDefsDiagram.selectRectAreaDef(newRectAreaDef);
+    const rectAreaDefFormGroup = EditRectAreaDefComponent.ConvertToFormGroup(newRectAreaDef);
+    this.rectAreaDefs.push(rectAreaDefFormGroup);
+    this.rectAreaDefsDiagram.selectRectAreaDef(rectAreaDefFormGroup);
   }
 
   onDeleteRequest(rectAreaDef: FormGroup): void {
     let index = 0;
 
     for (const currRectAreaDef of this.rectAreaDefs.controls) {
-      if (currRectAreaDef.value.id === rectAreaDef.value.id) {
+      if (currRectAreaDef === rectAreaDef) {
+        if (rectAreaDef === this.selectedRectAreaDef) {
+          this.selectedRectAreaDef = null;
+        }
         break;
       }
       index++;

@@ -15,14 +15,18 @@
     cursor: pointer;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: #{0.5 * $general-spacing};
 
     &.selected {
       background-color: tint($main-color, 60%);
       border: solid 1px tint($main-color, 40%);
     }
 
-
+    span.delete {
+      color: $danger-color;
+    }
   }
 }

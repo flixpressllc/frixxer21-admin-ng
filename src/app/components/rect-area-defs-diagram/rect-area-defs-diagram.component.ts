@@ -1,6 +1,7 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList,
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList,
   Renderer2, ViewChild, ViewChildren } from '@angular/core';
-import { RectAreaDef } from '../../models/datamodels';
+import { FormArray, FormGroup } from '@angular/forms';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-rect-area-defs-diagram',
@@ -8,41 +9,47 @@ import { RectAreaDef } from '../../models/datamodels';
   styleUrls: ['./rect-area-defs-diagram.component.scss']
 })
 export class RectAreaDefsDiagramComponent implements OnInit, AfterViewChecked {
-  @Input() rectAreaDefs: RectAreaDef[];
-  @Output() rectAreaDefSelected: EventEmitter<RectAreaDef> = new EventEmitter<RectAreaDef>();
+  @Input() rectAreaDefs: FormArray;
+  @Output() rectAreaDefSelected: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+  @Output() deleteRequest: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   @ViewChild('rectAreaDefsContainer') rectAreaDefsContainer: ElementRef;
   @ViewChildren('rectAreaDivs', { read: ElementRef}) rectAreaDivs: QueryList<ElementRef>;
-  selectedRectAreaDef: RectAreaDef;
+  selectedRectAreaDef: FormGroup;
   scaleFactor: number;
+
+  faTrash = faTrash;
 
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
 
-    this.selectedRectAreaDef = this.rectAreaDefs[0];
+    this.selectedRectAreaDef = this.rectAreaDefs.controls[0] as FormGroup;
     this.rectAreaDefSelected.emit(this.selectedRectAreaDef);
   }
 
   ngAfterViewChecked(): void {
-    let { width } = this.rectAreaDefsContainer.nativeElement.getBoundingClientRect();
+    const { width } = this.rectAreaDefsContainer.nativeElement.getBoundingClientRect();
+    /*
+    console.log(`width: ${width}`);
     if (width === 0) {
-      width = 500;
+      width = 1000;
     }
+    */
     this.scaleFactor = 1600 / width;
     const height = 9 / 16 * width;
     this.renderer.setStyle(this.rectAreaDefsContainer.nativeElement, 'height', `${height}px`);
 
     let i = 0;
     this.rectAreaDivs.forEach(rectAreaDiv => {
-      const { x, y, width: raWidth, height: raHeight} = this.rectAreaDefs[i];
+      const { x, y, width: raWidth, height: raHeight} = (this.rectAreaDefs.controls[i] as FormGroup).value;
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'height', `${raHeight / this.scaleFactor}px`);
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'width', `${raWidth / this.scaleFactor}px`);
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'left', `${x / this.scaleFactor}px`);
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'top', `${y / this.scaleFactor}px`);
 
       if (this.selectedRectAreaDef != null) {
-        if (this.rectAreaDefs[i] === this.selectedRectAreaDef) {
+        if (this.rectAreaDefs.controls[i] === this.selectedRectAreaDef) {
           this.renderer.addClass(rectAreaDiv.nativeElement, 'selected');
         } else {
           this.renderer.removeClass(rectAreaDiv.nativeElement, 'selected');
@@ -53,8 +60,12 @@ export class RectAreaDefsDiagramComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  selectRectAreaDef(rectAreaDef: RectAreaDef): void {
+  selectRectAreaDef(rectAreaDef: FormGroup): void {
     this.selectedRectAreaDef = rectAreaDef;
     this.rectAreaDefSelected.emit(this.selectedRectAreaDef);
+  }
+
+  clickDeleteRequest(rectAreaDef: FormGroup): void {
+    this.deleteRequest.emit(rectAreaDef);
   }
 }

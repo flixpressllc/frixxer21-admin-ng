@@ -1,7 +1,8 @@
 <div class='rect-area-defs' #rectAreaDefsContainer>
-  <div #rectAreaDivs *ngFor='let rectAreaDef of rectAreaDefs' 
+  <div #rectAreaDivs *ngFor='let rectAreaDef of rectAreaDefs.controls' 
     [class.selected]='rectAreaDef === selectedRectAreaDef'
     (click)='selectRectAreaDef(rectAreaDef)' >
-    <span>{{ rectAreaDef.id }}</span>
+    <span>{{ rectAreaDef.controls.id.value }}</span>
+    <span class='delete'><fa-icon [icon]='faTrash' (click)='clickDeleteRequest(rectAreaDef)'></fa-icon></span>
   </div>
 </div>
