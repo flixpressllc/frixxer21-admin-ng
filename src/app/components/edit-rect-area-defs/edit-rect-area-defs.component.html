@@ -1,7 +1,7 @@
 <div class='edit-rect-areas-ui'>  
   <div class='vertical-stack'>
     <button class='primary' (click)='addRectArea()'>Add Rect Area</button>
-    <app-rect-area-defs-diagram [rectAreaDefs]='rectAreaDefs.value'
+    <app-rect-area-defs-diagram  #rectAreaDefsDiagram [rectAreaDefs]='rectAreaDefs.value'
       (rectAreaDefSelected)='onRectAreaDefSelected($event)'>
     </app-rect-area-defs-diagram>
   </div>  

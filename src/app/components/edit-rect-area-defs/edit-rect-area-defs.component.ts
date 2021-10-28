@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { RectAreaDef } from 'src/app/models/datamodels';
 import { EditRectAreaDefComponent } from '../edit-rect-area-def/edit-rect-area-def.component';
+import { RectAreaDefsDiagramComponent } from '../rect-area-defs-diagram/rect-area-defs-diagram.component';
 
 @Component({
   selector: 'app-edit-rect-area-defs',
@@ -12,6 +13,8 @@ export class EditRectAreaDefsComponent implements OnInit {
 
   @Input() rectAreaDefs: FormArray;
   selectedRectAreaDef: FormGroup;
+
+  @ViewChild('rectAreaDefsDiagram', { read: RectAreaDefsDiagramComponent}) rectAreaDefsDiagram: RectAreaDefsDiagramComponent;
 
   public static ConvertToFormArray(rectAreaDefs: RectAreaDef[]): FormArray {
     const formArray = new FormArray([]);
@@ -44,6 +47,7 @@ export class EditRectAreaDefsComponent implements OnInit {
       y: 0,
     };
     this.rectAreaDefs.push(EditRectAreaDefComponent.ConvertToFormGroup(newRectAreaDef));
+    this.rectAreaDefsDiagram.selectRectAreaDef(newRectAreaDef);
   }
 
   onDeleteRequest(rectAreaDef: FormGroup): void {

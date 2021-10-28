@@ -41,10 +41,12 @@ export class RectAreaDefsDiagramComponent implements OnInit, AfterViewChecked {
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'left', `${x / this.scaleFactor}px`);
       this.renderer.setStyle(rectAreaDiv.nativeElement, 'top', `${y / this.scaleFactor}px`);
 
-      if (this.rectAreaDefs[i].id === this.selectedRectAreaDef.id) {
-        this.renderer.addClass(rectAreaDiv.nativeElement, 'selected');
-      } else {
-        this.renderer.removeClass(rectAreaDiv.nativeElement, 'selected');
+      if (this.selectedRectAreaDef != null) {
+        if (this.rectAreaDefs[i] === this.selectedRectAreaDef) {
+          this.renderer.addClass(rectAreaDiv.nativeElement, 'selected');
+        } else {
+          this.renderer.removeClass(rectAreaDiv.nativeElement, 'selected');
+        }
       }
 
       i++;
