@@ -17,9 +17,15 @@ export class AuthService {
               private router: Router,
               private ngZone: NgZone) {
     this.isSignedInChanged.next(this.getToken() !== null);
-    if (this.maintainAccessTokenTimeout === undefined && this.getToken() !== null) {
-      this.maintainAccessToken();
-    }
+    this.googleAuth.getAuth().subscribe((auth) => {
+      const currentUser = auth.currentUser.get();
+      if (currentUser != null ) {
+        this.user = currentUser;
+        if (this.maintainAccessTokenTimeout === undefined && this.getToken() !== null) {
+          this.maintainAccessToken();
+        }
+      }
+    });
   }
 
   public getToken(): string {
