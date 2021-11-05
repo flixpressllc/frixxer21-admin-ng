@@ -17,6 +17,9 @@ export class AuthService {
               private router: Router,
               private ngZone: NgZone) {
     this.isSignedInChanged.next(this.getToken() !== null);
+    if (this.maintainAccessTokenTimeout === undefined && this.getToken() !== null) {
+      this.maintainAccessToken();
+    }
   }
 
   public getToken(): string {
@@ -53,11 +56,9 @@ export class AuthService {
 
   public maintainAccessToken(): void {
     this.maintainAccessTokenTimeout = setTimeout(() => {
-
       this.user.reloadAuthResponse().then((authResponse: gapi.auth2.AuthResponse) => {
         sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, authResponse.access_token);
       });
-
       this.maintainAccessToken();
     }, 30 * 60 * 1000);
   }
