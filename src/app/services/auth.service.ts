@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, resolveForwardRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoogleAuthService } from 'ng-gapi';
 import GoogleUser = gapi.auth2.GoogleUser;
@@ -11,6 +11,7 @@ export class AuthService {
   public static SESSION_STORAGE_KEY = 'accessToken';
   private user: GoogleUser = undefined;
   private isSignedInChanged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private maintainAccessTokenTimeout: number;
 
   constructor(private googleAuth: GoogleAuthService,
               private router: Router,
@@ -38,8 +39,10 @@ export class AuthService {
 
   private signInSuccessHandler(res: GoogleUser): void {
     this.ngZone.run(() => {
+      this.user = res;
       sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, res.getAuthResponse().access_token);
       this.isSignedInChanged.next(true);
+      this.maintainAccessToken();
       this.router.navigate(['/dashboard']);
     });
   }
@@ -48,11 +51,25 @@ export class AuthService {
     return this.isSignedInChanged.asObservable();
   }
 
+  public maintainAccessToken(): void {
+    this.maintainAccessTokenTimeout = setTimeout(() => {
+
+      this.user.reloadAuthResponse().then((authResponse: gapi.auth2.AuthResponse) => {
+        sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, authResponse.access_token);
+      });
+
+      this.maintainAccessToken();
+    }, 30 * 60 * 1000);
+  }
+
   public signOut(): void {
     this.googleAuth.getAuth().subscribe((auth) => {
       auth.signOut();
       sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
       this.isSignedInChanged.next(false);
+      if (this.maintainAccessTokenTimeout != null) {
+        clearTimeout(this.maintainAccessTokenTimeout);
+      }
       this.router.navigate(['/']);
     });
   }
